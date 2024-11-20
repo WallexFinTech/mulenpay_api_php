@@ -1,0 +1,22 @@
+{
+  "name": "sq-dev/mulenpay",
+  "description": "Прием платежей и выплаты через Mulen Pay",
+  "type": "library",
+  "require": {
+    "php": "^7.4 || ^8.1",
+    "guzzlehttp/guzzle": "^7.4 || ^7.5",
+    "ext-json": "*"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "MulenPay\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "WALLEXFINTECH",
+      "email": "platem9@gmail.com"
+    }
+  ]
+}
