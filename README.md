@@ -10,11 +10,11 @@ composer require sq-dev/mulenpay
 
 # Требования
 
-* PHP 8.1 или выше
+* PHP: ^7.4 || ^8.1
 
 # Установленные зависимости:
 
-* guzzlehttp/guzzle:^7.9 (для HTTP-запросов)
+* guzzlehttp/guzzle: ^7.4 || ^7.5 (для HTTP-запросов)
 * ext-json:* (для работы с JSON)
 
 Использование
@@ -30,12 +30,14 @@ require 'vendor/autoload.php';
 
 use MulenPay\Payment;
 use MulenPay\Subscribe;
+use MulenPay\Receipt;
 
 $apiKey = 'ВАШ_API_KEY';
 $secretKey = 'ВАШ_SECRET_KEY';
 
 $payment = new Payment($apiKey, $secretKey);
 $subscribe = new Subscribe($apiKey);
+$receipt = new Receipt($apiKey)
 ```
 
 ## Работа с платежами
@@ -50,7 +52,22 @@ $response = $payment->createPayment([
     'shopId' => 5,
     'description' => 'Покупка булочек',
     'subscribe' => null,
-    'holdTime' => null
+    'holdTime' => null,
+    "items" => [
+        [
+            "description" => "string",
+            "quantity" => 0,
+            "price" => 0,
+            "vat_code" => 0,
+            "payment_subject" => 1,
+            "payment_mode" => 1,
+            "product_code" => "string",
+            "country_of_origin_code" => "string",
+            "customs_declaration_number" => "string",
+            "excise" => "string",
+            "measurement_unit" => 0,
+        ],
+    ],
 ]);
 
 echo $response;
@@ -60,7 +77,7 @@ echo $response;
 ```php
 <?php
 
-$response = $payment->getPaymentList();
+$response = $payment->getPaymentList(1);
 
 echo $response;
 ```
@@ -106,7 +123,7 @@ echo $response;
 ```php
 <?php
 
-$response = $subscribe->getSubscriptionList();
+$response = $subscribe->getSubscriptionList(1);
 
 echo $response;
 ```
@@ -119,3 +136,15 @@ $response = $subscribe->deleteSubscriptionById(5);
 
 echo $response;
 ```
+
+## Работа с чеком
+Получение списка подписок
+```php
+<?php
+
+$response = $receipt->getReceiptByID(1);
+
+echo $response;
+```
+
+
