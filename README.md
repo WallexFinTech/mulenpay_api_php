@@ -43,6 +43,7 @@ $receipt = new Receipt($apiKey)
 ## Работа с платежами
 
 Создание платежа
+
 ```php
 <?php
 $response = $payment->createPayment([
@@ -56,8 +57,8 @@ $response = $payment->createPayment([
     "items" => [
         [
             "description" => "string",
-            "quantity" => 0,
-            "price" => 0,
+            "quantity" => 1,
+            "price" => 1000.50,
             "vat_code" => 0,
             "payment_subject" => 1,
             "payment_mode" => 1,
@@ -70,81 +71,91 @@ $response = $payment->createPayment([
     ],
 ]);
 
-echo $response;
+print_r($response);
 ```
 
 Получение списка платежей
+
 ```php
 <?php
 
 $response = $payment->getPaymentList(1);
 
-echo $response;
+print_r($response);
 ```
 
 Получение платежа по ID
+
 ```php
 <?php
 
 $response = $payment->getPaymentById(5);
 
-echo $response;
+print_r($response);
 ```
 
 Подтверждение платежа
+
 ```php
 <?php
 
 $response = $payment->confirmPayment(5);
 
-echo $response;
+print_r($response);
 ```
 
 Отмена платежа
+
 ```php
 <?php
 
 $response = $payment->cancelPayment(5);
 
-echo $response;
+print_r($response);
 ```
 
 Возврат платежа
+
 ```php
 <?php
 
 $response = $payment->refundPayment(5);
 
-echo $response;
+print_r($response);
 ```
 
 ## Работа с подписками
+
 Получение списка подписок
+
 ```php
 <?php
 
 $response = $subscribe->getSubscriptionList(1);
 
-echo $response;
+print_r($response);
 ```
 
 Удаление подписки по ID
+
 ```php
 <?php
 
 $response = $subscribe->deleteSubscriptionById(5);
 
-echo $response;
+print_r($response);
 ```
 
 ## Работа с чеком
-Получение списка подписок
+
+Получение чека по payment ID
+
 ```php
 <?php
 
 $response = $receipt->getReceiptByID(1);
 
-echo $response;
+print_r($response);
 ```
 
 
